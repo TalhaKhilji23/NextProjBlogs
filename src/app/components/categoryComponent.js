@@ -16,7 +16,7 @@ const CategoryComponent = ({ category, imageUrl }) => {
           className="rounded-lg"
         />
       </div>
-      <div  className="mt-[-48px] rounded-lg backdrop-blur-sm z-50 relative text-white">
+      <div  className="mt-[-48px] text-center rounded-lg backdrop-blur-sm z-50 relative text-white">
         <p className="py-3 "> 
             {category}
 
@@ -25,7 +25,7 @@ const CategoryComponent = ({ category, imageUrl }) => {
       
       
     </div>
-  );
+  );  
 };
 
 export default CategoryComponent;

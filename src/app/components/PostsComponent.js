@@ -14,7 +14,7 @@ const PostsComponent = ({ imageUrl, title, subtitle, userImage, userName, date }
     };
 
     return (
-        <div className="relative bg-[#F5F5F5] w-[360px] h-[400px] rounded-lg">
+        <div className="relative bg-[#F5F5F5] ml-[-10px] w-[370px] h-[400px] rounded-lg ">
             <div className="">
                 <div className="flex justify-center items-center mt-2">
                     <Image
@@ -22,7 +22,7 @@ const PostsComponent = ({ imageUrl, title, subtitle, userImage, userName, date }
                         alt="Image Alt"
                         width={340}
                         height={190}
-                        className="w-[340px] h-[190px] object-cover bg-transparent border rounded-md"
+                        className="w-[340px] h-[190px] mt-3 object-cover bg-transparent border rounded-md"
                     />
                 </div>
             </div>

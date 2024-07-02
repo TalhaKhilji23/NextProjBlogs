@@ -11,6 +11,7 @@ const categories = [
   { category: "Travel", imageUrl: "/images/userImage.png" },
   { category: "Sports", imageUrl: "/images/saladimg.jpg" },
   { category: "Travel", imageUrl: "/images/userImage.png" },
+  { category: "Travel", imageUrl: "/images/userImage.png" },
 ];
 
 const featuredBlogs = [
@@ -78,13 +79,21 @@ export default function Home() {
             />
           ))}
         </div>
-        <div className="md:col-span-1 lg:col-span-1">
+        <div className="col-span-1">
           <BigFeatured />
         </div>
         
-        <div className="flex flex-wrap mt-4">
+       
+      </div>
+      <div className="flex ">
+        <div className="bg-red-600 h-2 w-1   mt-7"></div>
+        <h1 className="text-left ml-2 mt-5 text-xl">
+          Popular Posts
+        </h1>
+      </div>
+       <div className="flex  flex-wrap mt-4">
           {postsData.map((post, index) => (
-            <div key={index} className="w-full sm:w-1/2 lg:w-1/2 p-2">
+            <div key={index} className="w-full sm:w-1/2 lg:w-1/4 p-2  ">
               <PostsComponent
                 imageUrl={post.imageUrl}
                 title={post.title}
@@ -92,12 +101,11 @@ export default function Home() {
                 userImage={post.userImage}
                 userName={post.userName}
                 date={post.date}
-                style={{ marginLeft: '10px' }} // Adjust margin left here
+                style={{ marginLeft: '30px' }} // Adjust margin left here
               />
             </div>
           ))}
         </div>
-      </div>
     </div>
   );
 }
