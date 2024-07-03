@@ -1,0 +1,32 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-meganewstalha-dev-24ed6-authRole",
+      "UnauthRoleArn": "arn:aws:iam::812096089383:role/amplify-meganewstalha-dev-24ed6-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::812096089383:role/amplify-meganewstalha-dev-24ed6-authRole",
+      "Region": "ap-northeast-1",
+      "DeploymentBucketName": "amplify-meganewstalha-dev-24ed6-deployment",
+      "UnauthRoleName": "amplify-meganewstalha-dev-24ed6-unauthRole",
+      "StackName": "amplify-meganewstalha-dev-24ed6",
+      "StackId": "arn:aws:cloudformation:ap-northeast-1:812096089383:stack/amplify-meganewstalha-dev-24ed6/af124530-3903-11ef-8e93-060776592307",
+      "AmplifyAppId": "dvtjrvnjee6hf"
+    },
+    "categories": {
+      "auth": {
+        "meganewstalhae3ff4df3": {}
+      },
+      "storage": {
+        "meganewstalhabucket": {}
+      },
+      "api": {
+        "meganewstalha": {}
+      },
+      "function": {
+        "signUpTriggerFunction": {
+          "deploymentBucketName": "amplify-meganewstalha-dev-24ed6-deployment",
+          "s3Key": "amplify-builds/signUpTriggerFunction-46796f5a382f6b484a48-build.zip"
+        }
+      }
+    }
+  }
+}

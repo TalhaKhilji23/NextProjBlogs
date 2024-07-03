@@ -1,0 +1,20 @@
+input AMPLIFY {
+  globalAuthRule: AuthRule = { allow: public }
+}
+
+type Todo @model {
+  id: ID!
+  name: String!
+  description: String
+}
+
+type UserMegaNewsTalha @model {
+  id: ID!
+  first_name: String!
+  last_name: String
+  user_name: String
+  email: String
+  banner_pic: String
+  user_pic: String
+  explanation: String
+}

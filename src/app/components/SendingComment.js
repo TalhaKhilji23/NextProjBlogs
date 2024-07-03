@@ -5,8 +5,8 @@ import { ReactSVG } from 'react-svg';
 
 const SendingComment = ({ text, userImage, userName, date }) => {
   return (
-    <div className="relative bg-[#F5F5F5] mx-4 md:mx-8 lg:mx-16 xl:mx-80 mt-2 rounded-lg p-4">
-      <div className="flex items-center justify-center">
+    <div className="relative bg-[#F5F5F5]   mx-4 md:mx-8 lg:mx-64 xl:mx-[400px]  mt-2 rounded-lg p-4 ">
+      <div className="flex ">
         <div className="rounded-xl w-full h-auto mt-6 flex flex-col md:flex-row">
           <div className="flex items-start md:items-center w-full md:w-auto">
             <Image

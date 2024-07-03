@@ -6,8 +6,8 @@ import Image from 'next/image';
 const CategoryComponent = ({ category, imageUrl }) => {
   return (
    
-        <div  style={{ width: '170px', height: '48px' }}>
-      <div className="relative" style={{ width: '100%', height: '100%' }}>
+        <div   style={{ width: '170px', height: '48px' }}>
+      <div className="relative " style={{ width: '100%', height: '100%' }}>
         <Image
           src={imageUrl}
           alt={category}

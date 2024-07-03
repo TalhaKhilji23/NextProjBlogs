@@ -1,7 +1,13 @@
+"use client";
 import CategoryComponent from "@/app/components/categoryComponent";
 import FeaturedComponent from "@/app/components/featuredComponent";
 import BigFeatured from "@/app/components/BigFeatured";
 import PostsComponent from "@/app/components/PostsComponent";
+import React, { useState, useEffect } from "react";
+
+import { Auth, API, graphqlOperation, Storage } from "aws-amplify";
+import { useRouter } from "next/navigation";
+import { StorageImage } from "@aws-amplify/ui-react-storage";
 
 const categories = [
   { category: "Technology", imageUrl: "/images/breakimg.jpeg" },
@@ -15,12 +21,20 @@ const categories = [
 ];
 
 const featuredBlogs = [
-  { title: "Technology", imageUrl: "/images/car.png", subtitle: "This is a blog about technology" },
-  { title: "Girl", imageUrl: "/images/redg.png", subtitle: "This is a blog about food" },
+  {
+    title: "Technology",
+    imageUrl: "/images/car.png",
+    subtitle: "This is a blog about technology",
+  },
+  {
+    title: "Girl",
+    imageUrl: "/images/redg.png",
+    subtitle: "This is a blog about food",
+  },
 ];
 
 const postsData = [
-  { 
+  {
     imageUrl: "/images/boat.png",
     title: "Post 1",
     subtitle: "This is the first post",
@@ -28,7 +42,7 @@ const postsData = [
     userName: "User 1",
     date: "July 1, 2024",
   },
-  { 
+  {
     imageUrl: "/images/lappi.png",
     title: "Post 2",
     subtitle: "This is the second post",
@@ -36,7 +50,7 @@ const postsData = [
     userName: "User 2",
     date: "July 2, 2024",
   },
-  { 
+  {
     imageUrl: "/images/porche.png",
     title: "Post 3",
     subtitle: "This is the third post",
@@ -44,7 +58,7 @@ const postsData = [
     userName: "User 3",
     date: "July 3, 2024",
   },
-  { 
+  {
     imageUrl: "/images/hamburger.png",
     title: "Post 4",
     subtitle: "This is the fourth post",
@@ -55,11 +69,26 @@ const postsData = [
 ];
 
 export default function Home() {
+  const [userData, setuserData] = useState(null);
+
+  useEffect(() => {
+    const getUserData = async () => {
+      try {
+        const user = await Auth.currentAuthenticatedUser();
+        console.log("User data: ", user);
+        setuserData(user);
+      } catch (error) {
+        console.error("Error getting user data: ", error);
+      }
+    };
+    getUserData();
+  }, []);
+
   return (
     <div className="container mx-auto mt-6">
-      <div className="flex flex-wrap h-16 rounded-xl w-full bg-[#F5F5F5]">
+      <div className="flex flex-wrap justify-center items-center min-h-16 mb-12 sm:mb-24 md:mb-10 lg:mb-10 xl:mb-10 rounded-xl w-full bg-[#F5F5F5]">
         {categories.map((item, index) => (
-          <div key={index} className="m-2 sm:m-2 md:m-2 lg:m-2 xl:m-2">
+          <div key={index} className="m-2">
             <CategoryComponent
               category={item.category}
               imageUrl={item.imageUrl}
@@ -82,30 +111,26 @@ export default function Home() {
         <div className="col-span-1">
           <BigFeatured />
         </div>
-        
-       
       </div>
       <div className="flex ">
         <div className="bg-red-600 h-2 w-1   mt-7"></div>
-        <h1 className="text-left ml-2 mt-5 text-xl">
-          Popular Posts
-        </h1>
+        <h1 className="text-left ml-2 mt-5 text-xl">Popular Posts</h1>
       </div>
-       <div className="flex  flex-wrap mt-4">
-          {postsData.map((post, index) => (
-            <div key={index} className="w-full sm:w-1/2 lg:w-1/4 p-2  ">
-              <PostsComponent
-                imageUrl={post.imageUrl}
-                title={post.title}
-                subtitle={post.subtitle}
-                userImage={post.userImage}
-                userName={post.userName}
-                date={post.date}
-                style={{ marginLeft: '30px' }} // Adjust margin left here
-              />
-            </div>
-          ))}
-        </div>
+      <div className="flex  flex-wrap mt-4">
+        {postsData.map((post, index) => (
+          <div key={index} className="w-full sm:w-1/2 lg:w-1/4 p-2  ">
+            <PostsComponent
+              imageUrl={post.imageUrl}
+              title={post.title}
+              subtitle={post.subtitle}
+              userImage={post.userImage}
+              userName={post.userName}
+              date={post.date}
+              style={{ marginLeft: "30px" }} // Adjust margin left here
+            />
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

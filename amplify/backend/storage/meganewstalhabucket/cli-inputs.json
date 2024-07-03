@@ -1,0 +1,17 @@
+{
+  "resourceName": "meganewstalhabucket",
+  "policyUUID": "ca9eb73e",
+  "bucketName": "meganewstalhaf519811d02484effa20921e6971edcc2",
+  "storageAccess": "authAndGuest",
+  "guestAccess": [
+    "READ",
+    "CREATE_AND_UPDATE"
+  ],
+  "authAccess": [
+    "CREATE_AND_UPDATE",
+    "READ",
+    "DELETE"
+  ],
+  "triggerFunction": "NONE",
+  "groupAccess": {}
+}
