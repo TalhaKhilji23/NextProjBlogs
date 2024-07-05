@@ -62,7 +62,7 @@ const ReceivingComment = ({ text, userImage, userName, date, commentID,getBlogsD
       <h1 className="text-[#000000BF]/75 mt-[-170px] text-sm px-4 md:px-10 xl:px-2  pb-20 ">
         {text}
       </h1>
-      <h1 className="text-[#000000BF]/75  text-sm px-4 md:px-10 xl:px-80  pb-20 border-b border-gray-200 "></h1>
+      <h1 className="text-[#000000BF]/75 mt-[-150px] mb-10 text-sm px-4 md:px-10 xl:px-80  pb-20 border-b border-gray-200 "></h1>
 
       {/* Modal for replying */}
       {isModalOpen && (

@@ -1,24 +1,25 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { ReactSVG } from "react-svg";
-import Image from "next/image";
-import { Auth, API, graphqlOperation, Storage } from "aws-amplify";
+import { Auth } from "aws-amplify";
 import { StorageImage } from "@aws-amplify/ui-react-storage";
 
 const Header = ({ imgurl, name }) => {
   const [isPagesOpen, setIsPagesOpen] = useState(false);
   const [isAnotherDropdownOpen, setIsAnotherDropdownOpen] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-
-  const [userData, setuserData] = useState(null);
+  const [userData, setUserData] = useState(null);
+  const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false); // State for profile dropdown
+  const router = useRouter();
 
   useEffect(() => {
     const getUserData = async () => {
       try {
         const user = await Auth.currentAuthenticatedUser();
         console.log("User data Attr: ", user.attributes.picture);
-        setuserData(user);
+        setUserData(user);
       } catch (error) {
         console.error("Error getting user data: ", error);
       }
@@ -46,10 +47,27 @@ const Header = ({ imgurl, name }) => {
     setIsAnotherDropdownOpen(false);
   };
 
+  const handleUserPicClick = () => {
+    const userId = userData?.attributes?.sub;
+    if (userId) {
+      router.push(`/profile/${userId}`);
+    }
+  };
+
+  const handleProfileMenuHover = () => {
+    setIsProfileMenuOpen(true);
+  };
+
+  const handleProfileMenuLeave = () => {
+    setIsProfileMenuOpen(false);
+  };
+
   return (
-    <header className="bg-white  text-[#FC4308] pt-4 sticky top-0 z-50">
-      <nav className="container mx-auto flex items-center">
-        <div className="text-lg font-bold w-36 ">Mega News.</div>
+    <header className="bg-white text-[#FC4308] pt-4 sticky top-0 z-50">
+      <nav className="container mx-auto flex items-center relative">
+        <Link href="/home"> 
+          <div className="text-lg font-bold w-36">Mega News.</div>
+        </Link>
         <div className="md:hidden">
           <button
             onClick={toggleMenu}
@@ -202,29 +220,59 @@ const Header = ({ imgurl, name }) => {
           <ReactSVG className="mt-3 ml-4 mr-4" src="/svgs/searchicon.svg" />
         </div>
 
-        <StorageImage
-          className="ml-16 h-12 w-12 rounded-xl"
-          imgKey={userData?.attributes?.picture || "UserAvatar.png"}
-        />
-
-        {/* <Image
-          src="/images/userImage.png" // Image URL
-          alt="My Image"
-          className="ml-16"
-          width={50} // Set the desired width of the image
-          height={3500} // Set the desired height of the image
-        /> */}
-        <Link
-          href="/"
-          className="block ml-4 text-[#3E3232] md:inline-block hover:text-black hover:font-bold"
+        <div
+          className="relative flex"
+          onMouseEnter={handleProfileMenuHover}
+          onMouseLeave={handleProfileMenuLeave}
         >
-          {userData?.attributes?.given_name}
-        </Link>
-        <ReactSVG className="mt-1 ml-2" src="/svgs/dropdown.svg" />
+          <StorageImage
+            className="ml-16 h-12 w-12 rounded-xl cursor-pointer"
+            imgKey={userData?.attributes?.picture || "UserAvatar.png"}
+            onClick={handleUserPicClick}
+          />
+
+          <Link
+            href={`/profile/${userData?.attributes?.sub}`}
+            className="block ml-4 mt-4 text-[#3E3232] md:inline-block hover:text-black hover:font-bold"
+          >
+            {userData?.attributes?.given_name}
+          </Link>
+
+          <ReactSVG className="mt-5 ml-2" src="/svgs/dropdown.svg" />
+
+          {isProfileMenuOpen && (
+            <div className="absolute left-0 ml-40 mt-12 w-48 bg-white shadow-lg rounded-lg border border-gray-200 z-50">
+              <ul className="py-2 flex flex-col">
+                <li>
+                  <Link
+                    href={`/profile/${userData?.attributes?.sub}`}
+                    className="block px-4 py-2 text-[#3E3232] hover:bg-gray-100"
+                  >
+                    Profile
+                  </Link>
+                </li>
+                <li>
+                  <button
+                    onClick={() => {
+                      Auth.signOut()
+                        .then(() => {
+                          router.push("/auth/login");
+                        })
+                        .catch((error) => console.error("Error signing out: ", error));
+                    }}
+                    className="block w-full px-3 py-2 text-left ml-3 text-[#3E3232] hover:bg-gray-100"
+                  >
+                    Sign Out
+                  </button>
+                </li>
+              </ul>
+            </div>
+          )}
+        </div>
 
         <div className="bg-[#F5F5F5] w-12 h-12 rounded-xl ml-16">
           <ReactSVG
-            className="mt-3  flex justify-center items-center"
+            className="mt-3 flex justify-center items-center"
             src="/svgs/bookmarkicon.svg"
           />
         </div>

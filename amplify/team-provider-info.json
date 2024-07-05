@@ -25,6 +25,10 @@
         "signUpTriggerFunction": {
           "deploymentBucketName": "amplify-meganewstalha-dev-24ed6-deployment",
           "s3Key": "amplify-builds/signUpTriggerFunction-347973596a5a65436779-build.zip"
+        },
+        "ContactUsMegaNewsTalhaFunction": {
+          "deploymentBucketName": "amplify-meganewstalha-dev-24ed6-deployment",
+          "s3Key": "amplify-builds/ContactUsMegaNewsTalhaFunction-72353341784c2b6a5778-build.zip"
         }
       }
     }

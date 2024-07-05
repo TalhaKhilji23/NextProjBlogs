@@ -1,6 +1,15 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const getContactUs = /* GraphQL */ `
+  query GetContactUs($id: ID!) {
+    getContactUs(id: $id) {
+      success
+      message
+      __typename
+    }
+  }
+`;
 export const getTodo = /* GraphQL */ `
   query GetTodo($id: ID!) {
     getTodo(id: $id) {

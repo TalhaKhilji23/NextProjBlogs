@@ -57,3 +57,35 @@ type ReplyMegaNewsTalha @model {
   createdAt: AWSDateTime!
   updatedAt: AWSDateTime!
 }
+# type ContactUsMegaNewsTalha @model {
+#   id: ID!
+#   subject: String!
+#   name: String!
+#   email: String!
+#   explanation: String
+#   image: String
+#   createdAt: AWSDateTime!
+#   updatedAt: AWSDateTime!
+# }
+type Response {
+  success: Boolean
+  message: String
+}
+
+type Mutation {
+  createContactUs(
+    id: ID!,
+    subject: String!,
+    name: String!,
+    email: String!,
+    explanation: String,
+    image: String,
+    createdAt: AWSDateTime,
+    updatedAt: AWSDateTime
+  ): Response @function(name: "ContactUsMegaNewsTalhaFunction-${env}")
+}
+
+type Query {
+  getContactUs(id: ID!): Response @function(name: "ContactUsMegaNewsTalhaFunction-${env}")
+}
+

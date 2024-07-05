@@ -1,6 +1,33 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const createContactUs = /* GraphQL */ `
+  mutation CreateContactUs(
+    $id: ID!
+    $subject: String!
+    $name: String!
+    $email: String!
+    $explanation: String
+    $image: String
+    $createdAt: AWSDateTime
+    $updatedAt: AWSDateTime
+  ) {
+    createContactUs(
+      id: $id
+      subject: $subject
+      name: $name
+      email: $email
+      explanation: $explanation
+      image: $image
+      createdAt: $createdAt
+      updatedAt: $updatedAt
+    ) {
+      success
+      message
+      __typename
+    }
+  }
+`;
 export const createTodo = /* GraphQL */ `
   mutation CreateTodo(
     $input: CreateTodoInput!

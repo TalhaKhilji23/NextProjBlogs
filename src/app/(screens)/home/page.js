@@ -25,6 +25,7 @@ const categories = [
   { category: "Sports", imageUrl: "/images/saladimg.jpg" },
   { category: "Travel", imageUrl: "/images/userImage.png" },
   { category: "Travel", imageUrl: "/images/userImage.png" },
+
 ];
 
 export default function Home() {
@@ -84,7 +85,7 @@ export default function Home() {
 
   return (
     <div className="container mx-auto mt-6">
-      <div className="flex flex-wrap justify-center w-full items-center min-h-16 mb-12 sm:mb-24 md:mb-10 lg:mb-10 xl:mb-10 rounded-xl bg-[#F5F5F5]">
+      <div className="flex flex-wrap justify-center w-full items-center min-h-16 mb-12 sm:mb-24 md:mb-10 lg:mb-10 xl:mb-10 rounded-xl bg-[#F5F5F5] ">
         {categories.map((post, index) => (
           <button key={index} onClick={() => handleCategories(post.category)}>
             <div className="m-2">
@@ -162,7 +163,10 @@ export default function Home() {
           <div className="bg-red-600 h-2 w-1 mt-7"></div>
           <h1 className="text-left ml-2 mt-5 text-xl">Popular Posts</h1>
         </div>
-        <div className="flex flex-wrap mt-4 -mx-2">
+        <div
+          className="flex flex-wrap mt-4 -mx-2 overflow-y-auto"
+          style={{ maxHeight: "500px" }}
+        >
           {blogsList?.map((post, index) => (
             <div key={index} className="w-full sm:w-1/2 lg:w-1/3 xl:w-1/4 p-2">
               <Link href={`/blogs/${post.id}`}>

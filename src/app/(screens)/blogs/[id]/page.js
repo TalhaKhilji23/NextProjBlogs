@@ -70,7 +70,7 @@ function Detail({ params }) {
           </div>
         </div>
 
-        <div className="flex justify-end items-end mt-[-900px] mb-[730px]">
+        <div className="flex justify-end items-end mt-[-1030px] mb-[730px]">
           <div className="flex bg-[#F5F5F5] w-[360px] mr-28 h-[100px] rounded-xl">
             <div className="flex">
               <StorageImage

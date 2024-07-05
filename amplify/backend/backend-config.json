@@ -46,6 +46,11 @@
     }
   },
   "function": {
+    "ContactUsMegaNewsTalhaFunction": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
     "signUpTriggerFunction": {
       "build": true,
       "dependsOn": [
@@ -63,6 +68,22 @@
     }
   },
   "parameters": {
+    "AMPLIFY_function_ContactUsMegaNewsTalhaFunction_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "ContactUsMegaNewsTalhaFunction"
+        }
+      ]
+    },
+    "AMPLIFY_function_ContactUsMegaNewsTalhaFunction_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "ContactUsMegaNewsTalhaFunction"
+        }
+      ]
+    },
     "AMPLIFY_function_signUpTriggerFunction_deploymentBucketName": {
       "usedBy": [
         {
