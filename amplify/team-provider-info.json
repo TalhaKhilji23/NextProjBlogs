@@ -24,7 +24,7 @@
       "function": {
         "signUpTriggerFunction": {
           "deploymentBucketName": "amplify-meganewstalha-dev-24ed6-deployment",
-          "s3Key": "amplify-builds/signUpTriggerFunction-46796f5a382f6b484a48-build.zip"
+          "s3Key": "amplify-builds/signUpTriggerFunction-347973596a5a65436779-build.zip"
         }
       }
     }

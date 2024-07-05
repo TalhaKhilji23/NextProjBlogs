@@ -1,7 +1,10 @@
 "use client";
-import React, { useState } from 'react';
+import React, { useState ,useEffect} from 'react';
 import { ReactSVG } from "react-svg";
 import PostsComponent from "@/app/components/PostsComponent";
+import { Auth, API, graphqlOperation, Storage } from "aws-amplify";
+import { createMovieMegaNewsTalha } from '@/graphql/mutations';
+import { listMovieMegaNewsTalhas,getUserMegaNewsTalha} from '@/graphql/queries';
 
 import AddBlogComponent from '@/app/components/AddBlogComponent';
 export default function Profile() {
@@ -281,9 +284,32 @@ export default function Profile() {
 ];
 const [showAddBlog, setShowAddBlog] = useState(false);
 
+const [blogsList, setBlogsList] = useState(null);
+const [imagePreview, setImagePreview] = useState(null);
+const [userID, setUserID] = useState(null);
+
+useEffect(() => {
+  const getBlogsData = async () => {
+    try {
+      const user = await Auth.currentAuthenticatedUser();
+      const result = await API.graphql(
+        graphqlOperation(getUserMegaNewsTalha, { id: user?.attributes?.sub })
+      );
+      console.log("File GOt successfully>>>>", result?.data?.getUserMegaNewsTalha
+      );
+      setBlogsList(result?.data?.getUserMegaNewsTalha?.movies?.items)
+      return result;
+    } catch (error) {
+      console.log("Error Fetching file: ", error);
+      return null;
+    }
+  };
+  getBlogsData();
+},[]);
+
 
   return (
-    <div className="px-4 md:px-8 lg:px-16 xl:px-44 2xl:px-64 py-4">
+    <div className="px-4 md:px-6 lg:px-10 xl:px-52   2xl:px-60 py-4">
     <div className="h-64 w-full bg-[#F5F5F5] rounded-xl flex flex-col justify-between items-center p-4">
       <img src='/images/cover.png' className='w-full h-32 object-cover rounded-t-xl'/>
       <div className='flex justify-between w-full mt-4'>
@@ -321,19 +347,19 @@ const [showAddBlog, setShowAddBlog] = useState(false);
           </div>
 
           <div className="flex flex-wrap mt-4 -mx-2">
-            {postsData.map((post, index) => (
-              <div key={index} className="w-full sm:w-1/2 lg:w-1/3 xl:w-1/4 p-2">
-                <PostsComponent
-                  imageUrl={post.imageUrl}
-                  title={post.title}
-                  subtitle={post.subtitle}
-                  userImage={post.userImage}
-                  userName={post.userName}
-                  date={post.date}
-                />
-              </div>
-            ))}
-          </div>
+              {blogsList?.map((post, index) => (
+                <div key={index} className="w-full sm:w-1/2 lg:w-1/3 xl:w-1/4   p-2">
+                  <PostsComponent
+                    imageUrl={post.movieimg || '/default-image.png'} // Use a default image if imageUrl is not available
+                    title={post.title || 'Untitled'} // Default title if not available
+                    subtitle={post.movieexplanation || 'No subtitle available'} // Default subtitle if not available
+                    userImage={post.user.user_pic || '/default-user.png'} // Default user image if not available
+                    userName={post.user.user_name || 'Anonymous'} // Default username if not available
+                    date={new Date(post.createdAt).toLocaleDateString()} // Format date if available
+                    />
+                </div>
+              ))}
+            </div>
         </div>
       )}
     </div>

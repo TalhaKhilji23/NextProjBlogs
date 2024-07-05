@@ -47,7 +47,7 @@ const Header = ({ imgurl, name }) => {
   };
 
   return (
-    <header className="bg-white text-[#FC4308] pt-4 sticky top-0 z-50">
+    <header className="bg-white  text-[#FC4308] pt-4 sticky top-0 z-50">
       <nav className="container mx-auto flex items-center">
         <div className="text-lg font-bold w-36 ">Mega News.</div>
         <div className="md:hidden">

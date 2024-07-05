@@ -17,4 +17,43 @@ type UserMegaNewsTalha @model {
   banner_pic: String
   user_pic: String
   explanation: String
+  movies: [MovieMegaNewsTalha] @hasMany
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+  userComments: [CommentMegaNewsTalha] @hasMany
+  userReplies: [ReplyMegaNewsTalha] @hasMany
+
+}
+type MovieMegaNewsTalha @model {
+  id: ID!
+  title: String!
+  tag: String
+  movieimg: String
+  movieexplanation: String
+  category: String
+  user: UserMegaNewsTalha @belongsTo(fields: ["userId"])
+  userId:ID!
+  comments: [CommentMegaNewsTalha] @hasMany
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+
+}
+type CommentMegaNewsTalha @model {
+  id: ID!
+  comment: String!
+  userType: String!
+  user: UserMegaNewsTalha @belongsTo(fields: ["userId"])
+  userId:ID!
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+  replies: [ReplyMegaNewsTalha] @hasMany
+}
+type ReplyMegaNewsTalha @model {
+  id: ID!
+  comment: String!
+  userType: String!
+  user: UserMegaNewsTalha @belongsTo(fields: ["userId"])
+  userId:ID!
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
 }
