@@ -8,7 +8,7 @@ export default function Error() {
     <ReactSVG className="mt-3 mr-3" src="/svgs/error.svg" />
   
     <h1 className="text-center">
-      OOPS! Page you're looking for doesn't exist. Please use search for help
+      OOPS! Page you&apos;re looking for doesn&apos;t exist. Please use search for help
     </h1>
   </div>
   

@@ -75,7 +75,7 @@ export default function ResetPassword() {
 
                       {/* <!--Register button--> */}
                       <div className="flex items-center justify-between pb-6">
-                        <p className="mb-0 mr-2">Don't have an account?</p>
+                        <p className="mb-0 mr-2">Don&apos;t have an account?</p>
                         <TERipple rippleColor="light">
                           <button
                             type="button"
