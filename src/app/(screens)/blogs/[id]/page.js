@@ -61,16 +61,16 @@ function Detail({ params }) {
           </h1>
         </div>
 
-        <div className="max-w-[1192px] w-full mx-auto mt-[-500px] ml-60">
+        <div className="max-w-[1192px]  w-full mx-auto mt-[-500px] ml-60">
           <div className="relative rounded-lg overflow-hidden">
             <StorageImage
-              className="rounded-lg object-cover w-full mb-32"
+              className="rounded-lg object-cover w-full mb-32 h-[600px]"
               imgKey={blogsList?.movieimg || "UserAvatar.png"}
             />
           </div>
         </div>
 
-        <div className="flex justify-end items-end mt-[-1030px] mb-[730px]">
+        <div className="flex justify-end items-end mt-[-830px] mb-[630px]">
           <div className="flex bg-[#F5F5F5] w-[360px] mr-28 h-[100px] rounded-xl">
             <div className="flex">
               <StorageImage
@@ -89,25 +89,18 @@ function Detail({ params }) {
           </div>
         </div>
       </div>
-
-      <div className="flex justify-between mt-7 px-4 md:px-0 lg:px-0 xl:px-0">
-        <div className="flex items-center">
-          <ReactSVG className="mt-1 ml-[500px]" src="/svgs/calender.svg" />
-          <h1 className="text-[#3E3232BF]/75 ml-3 text-sm mt-[3px]">
-            July 14, 2022
-          </h1>
+      <div className="flex flex-col md:flex-row justify-between mt-7 px-4 md:px-[600px] ml:[-40px]">
+        <div className="flex items-center mb-4 md:mb-0 md:mr-4 ">
+          <ReactSVG className="w-6 h-6" src="/svgs/calender.svg" />
+          <h1 className="text-gray-600 ml-3 text-sm">July 14, 2022</h1>
+        </div>
+        <div className="flex items-center mb-4 md:mb-0 md:mr-4">
+          <ReactSVG className="w-6 h-6" src="/svgs/comment.svg" />
+          <h1 className="text-gray-600 ml-3 text-sm">Comments: 35</h1>
         </div>
         <div className="flex items-center">
-          <ReactSVG className="mt-1 ml-[-400px]" src="/svgs/comment.svg" />
-          <h1 className="text-[#3E3232BF]/75 ml-3 text-sm mt-[3px]">
-            Comments: 35
-          </h1>
-        </div>
-        <div className="flex items-center">
-          <ReactSVG className="mt-1 ml-[-700px]" src="/svgs/file.svg" />
-          <h1 className="text-[#3E3232BF]/75 ml-3 text-sm mt-[3px]">
-            Category: Sport
-          </h1>
+          <ReactSVG className="w-6 h-6" src="/svgs/file.svg" />
+          <h1 className="text-gray-600 ml-3 text-sm">Category: Sport</h1>
         </div>
       </div>
 
